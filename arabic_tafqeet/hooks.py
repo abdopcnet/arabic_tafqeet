@@ -242,3 +242,9 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+fixtures = [
+    {"doctype": "Custom Field", "filters": [["module", "=", "Arabic Tafqeet"]]},
+    {"doctype": "Property Setter", "filters": [["module", "=", "Arabic Tafqeet"]]},
+    {"doctype": "Client Script", "filters": [["module", "=", "Arabic Tafqeet"]]},
+    {"doctype": "Server Script", "filters": [["module", "=", "Arabic Tafqeet"]]},
+]
