@@ -243,8 +243,6 @@ app_license = "mit"
 # }
 
 fixtures = [
-    {"doctype": "Custom Field", "filters": [["module", "=", "Arabic Tafqeet"]]},
-    {"doctype": "Property Setter", "filters": [["module", "=", "Arabic Tafqeet"]]},
     {"doctype": "Client Script", "filters": [["module", "=", "Arabic Tafqeet"]]},
     {"doctype": "Server Script", "filters": [["module", "=", "Arabic Tafqeet"]]},
 ]
