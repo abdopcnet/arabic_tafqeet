@@ -1,5 +1,8 @@
 ### Arabic Tafqeet
 
+![Version](https://img.shields.io/badge/version-17.11.2025-blue)
+
+
 Arabic Tafqeet
 
 ### Installation
