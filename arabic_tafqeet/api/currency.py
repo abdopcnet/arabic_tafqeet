@@ -22,7 +22,7 @@ def ensure_saudi_riyal_symbol_files():
 	]
 	
 	app_path = frappe.get_app_path("arabic_tafqeet")
-	js_path = os.path.join(app_path, "arabic_tafqeet", "public", "js")
+	js_path = os.path.join(app_path, "public", "js")
 	
 	uploaded_files = []
 	
