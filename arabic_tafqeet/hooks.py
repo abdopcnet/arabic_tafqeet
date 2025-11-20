@@ -139,13 +139,20 @@ doctype_js = {
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Purchase Invoice": {
+		"before_validate": "arabic_tafqeet.Purchase_Invoice_tafqeet.set_tafqeet_amount",
+	},
+	"Quotation": {
+		"before_validate": "arabic_tafqeet.Quotation_tafqeet.set_tafqeet_amount",
+	},
+	"Sales Invoice": {
+		"before_validate": "arabic_tafqeet.Sales_Invoice_tafqeet.set_tafqeet_amount",
+	},
+	"Sales Order": {
+		"before_validate": "arabic_tafqeet.Sales_order_tafqeet.set_tafqeet_amount",
+	},
+}
 
 # Scheduled Tasks
 # ---------------
@@ -243,8 +250,3 @@ doctype_js = {
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
-
-fixtures = [
-    {"doctype": "Client Script", "filters": [["module", "=", "Arabic Tafqeet"]]},
-    {"doctype": "Server Script", "filters": [["module", "=", "Arabic Tafqeet"]]},
-]
