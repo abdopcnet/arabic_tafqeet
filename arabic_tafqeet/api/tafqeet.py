@@ -6,7 +6,6 @@ def get_tafqeet(amount):
 	"""
 	Convert numeric amount to Arabic words (Tafqeet) - API endpoint
 	"""
-	frappe.log_error(f"get_tafqeet called with amount: {amount}", "Arabic Tafqeet Debug")
 	units = ["", "واحد", "اثنان", "ثلاثة", "أربعة", "خمسة", "ستة", "سبعة", "ثمانية", "تسعة"]
 	units_feminine = ["", "واحدة", "اثنتان", "ثلاث", "أربع", "خمس", "ست", "سبع", "ثمان", "تسع"]
 	tens = ["", "عشرة", "عشرون", "ثلاثون", "أربعون", "خمسون", "ستون", "سبعون", "ثمانون", "تسعون"]
@@ -160,6 +159,5 @@ def get_tafqeet(amount):
 	parts.append("فقط لا غير")
 	tafqeet_text = " ".join(parts)
 	
-	frappe.log_error(f"get_tafqeet returning: {tafqeet_text}", "Arabic Tafqeet Debug")
 	return {"tafqeet": tafqeet_text}
 
