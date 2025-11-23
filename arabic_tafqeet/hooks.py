@@ -44,7 +44,11 @@ app_license = "mit"
 
 # include js in doctype views
 doctype_js = {
-	"Currency": "public/js/currency.js"
+	"Currency": "public/js/currency.js",
+	"Sales Invoice": "public/js/sales_invoice.js",
+	"Sales Order": "public/js/sales_order.js",
+	"Purchase Invoice": "public/js/purchase_invoice.js",
+	"Quotation": "public/js/quotation.js"
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -138,21 +142,22 @@ doctype_js = {
 # Document Events
 # ---------------
 # Hook on document methods and events
+# Disabled - Using JavaScript client-side instead to avoid errors
 
-doc_events = {
-	"Purchase Invoice": {
-		"before_validate": "arabic_tafqeet.Purchase_Invoice_tafqeet.set_tafqeet_amount",
-	},
-	"Quotation": {
-		"before_validate": "arabic_tafqeet.Quotation_tafqeet.set_tafqeet_amount",
-	},
-	"Sales Invoice": {
-		"before_validate": "arabic_tafqeet.Sales_Invoice_tafqeet.set_tafqeet_amount",
-	},
-	"Sales Order": {
-		"before_validate": "arabic_tafqeet.Sales_order_tafqeet.set_tafqeet_amount",
-	},
-}
+# doc_events = {
+# 	"Purchase Invoice": {
+# 		"before_validate": "arabic_tafqeet.Purchase_Invoice_tafqeet.set_tafqeet_amount",
+# 	},
+# 	"Quotation": {
+# 		"before_validate": "arabic_tafqeet.Quotation_tafqeet.set_tafqeet_amount",
+# 	},
+# 	"Sales Invoice": {
+# 		"before_validate": "arabic_tafqeet.Sales_Invoice_tafqeet.set_tafqeet_amount",
+# 	},
+# 	"Sales Order": {
+# 		"before_validate": "arabic_tafqeet.Sales_order_tafqeet.set_tafqeet_amount",
+# 	},
+# }
 
 # Scheduled Tasks
 # ---------------
