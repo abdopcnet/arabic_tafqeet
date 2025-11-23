@@ -57,7 +57,6 @@ def ensure_saudi_riyal_symbol_files():
 					
 					uploaded_files.append(file_info["file_name"])
 				except Exception as e:
-					frappe.log_error(f"Error uploading {file_info['file_name']}: {str(e)}")
 					return {
 						"success": False,
 						"error": str(e)
