@@ -4,19 +4,31 @@
 frappe.ui.form.on('Payment Entry', {
 	refresh(frm) {
 		// تحديث التفقيط عند فتح المستند
-		if (frm.doc.docstatus === 0 && frm.doc.paid_amount) {
+		if (frm.doc.docstatus === 0) {
 			applyTafqeet(frm);
 		}
 	},
 	validate(frm) {
 		// تحديث التفقيط قبل الحفظ
-		if (frm.doc.docstatus === 0 && frm.doc.paid_amount) {
+		if (frm.doc.docstatus === 0) {
+			applyTafqeet(frm);
+		}
+	},
+	payment_type(frm) {
+		// تحديث التفقيط عند تغيير نوع الدفع
+		if (frm.doc.docstatus === 0) {
 			applyTafqeet(frm);
 		}
 	},
 	paid_amount(frm) {
 		// تحديث التفقيط عند تغيير المبلغ المدفوع
-		if (frm.doc.docstatus === 0 && frm.doc.paid_amount) {
+		if (frm.doc.docstatus === 0) {
+			applyTafqeet(frm);
+		}
+	},
+	received_amount(frm) {
+		// تحديث التفقيط عند تغيير المبلغ المستلم
+		if (frm.doc.docstatus === 0) {
 			applyTafqeet(frm);
 		}
 	}
@@ -25,8 +37,22 @@ frappe.ui.form.on('Payment Entry', {
 function applyTafqeet(frm) {
 	if (!frm || !frm.doc) return;
 	if (frm.doc.docstatus !== 0) return; // فقط في المسودة
-	const amount = frm.doc.paid_amount;
-	if (amount == null) return;
+	
+	// تحديد المبلغ الصحيح حسب نوع الدفع
+	let amount = null;
+	if (frm.doc.payment_type === "Receive") {
+		amount = frm.doc.received_amount;
+	} else if (frm.doc.payment_type === "Pay") {
+		amount = frm.doc.paid_amount;
+	} else if (frm.doc.payment_type === "Internal Transfer") {
+		amount = frm.doc.paid_amount;
+	}
+	
+	if (amount == null || amount === 0) {
+		frm.set_value('custom_tafqeet_amount', '');
+		return;
+	}
+	
 	frm.set_value('custom_tafqeet_amount', tafqeetArabic(amount));
 }
 
@@ -63,7 +89,10 @@ function tafqeetArabic(amount) {
 		if(th>0){
 			if(th===1) parts.push("ألف");
 			else if(th===2) parts.push("ألفان");
-			else if(th>=3 && th<=10) parts.push(units[th]+" آلاف");
+			else if(th>=3 && th<=10) {
+				if(th === 10) parts.push("عشرة آلاف");
+				else parts.push(units[th]+" آلاف");
+			}
 			else parts.push(convertHundreds(th)+" ألف");
 		}
 		if(rest>0) parts.push(convertHundreds(rest));
@@ -74,7 +103,10 @@ function tafqeetArabic(amount) {
 		if(mil>0){
 			if(mil===1) parts.push("مليون");
 			else if(mil===2) parts.push("مليونان");
-			else if(mil>=3 && mil<=10) parts.push(units[mil]+" ملايين");
+			else if(mil>=3 && mil<=10) {
+				if(mil === 10) parts.push("عشرة ملايين");
+				else parts.push(units[mil]+" ملايين");
+			}
 			else parts.push(convertHundreds(mil)+" مليون");
 		}
 		if(rest>0) parts.push(convertThousands(rest));
@@ -85,7 +117,10 @@ function tafqeetArabic(amount) {
 		if(bil>0){
 			if(bil===1) parts.push("مليار");
 			else if(bil===2) parts.push("ملياران");
-			else if(bil>=3 && bil<=10) parts.push(units[bil]+" مليارات");
+			else if(bil>=3 && bil<=10) {
+				if(bil === 10) parts.push("عشرة مليارات");
+				else parts.push(units[bil]+" مليارات");
+			}
 			else parts.push(convertHundreds(bil)+" مليار");
 		}
 		if(rest>0) parts.push(convertMillions(rest));
