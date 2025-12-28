@@ -8,10 +8,19 @@ frappe.ui.form.on('Sales Invoice', {
 			applyTafqeet(frm);
 		}
 	},
-	validate(frm) {
-		// تحديث التفقيط قبل الحفظ
+	grand_total(frm) {
+		// تحديث التفقيط عند تغيير الإجمالي
 		if (frm.doc.docstatus === 0 && frm.doc.grand_total) {
 			applyTafqeet(frm);
+		}
+	},
+	validate(frm) {
+		// تحديث التفقيط قبل الحفظ (تعديل مباشر لتجنب حلقة لا نهائية)
+		if (frm.doc.docstatus === 0 && frm.doc.grand_total) {
+			const amount = frm.doc.grand_total;
+			if (amount != null) {
+				frm.doc.custom_tafqeet_amount = tafqeetArabic(amount);
+			}
 		}
 	}
 });
