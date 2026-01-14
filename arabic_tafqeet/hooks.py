@@ -43,12 +43,28 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
+# Common file tafqeet_common.js is loaded first in each doctype
 doctype_js = {
-	"Currency": "public/js/currency.js",
-	"Sales Invoice": "public/js/sales_invoice.js",
-	"Sales Order": "public/js/sales_order.js",
-	"Purchase Invoice": "public/js/purchase_invoice.js",
-	"Quotation": "public/js/quotation.js"
+    "Currency": [
+        "public/js/tafqeet_common.js",
+        "public/js/currency.js"
+    ],
+    "Sales Invoice": [
+        "public/js/tafqeet_common.js",
+        "public/js/sales_invoice.js"
+    ],
+    "Sales Order": [
+        "public/js/tafqeet_common.js",
+        "public/js/sales_order.js"
+    ],
+    "Purchase Invoice": [
+        "public/js/tafqeet_common.js",
+        "public/js/purchase_invoice.js"
+    ],
+    "Quotation": [
+        "public/js/tafqeet_common.js",
+        "public/js/quotation.js"
+    ]
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
