@@ -61,6 +61,10 @@ doctype_js = {
         "public/js/tafqeet_common.js",
         "public/js/purchase_invoice.js"
     ],
+    "Purchase Order": [
+        "public/js/tafqeet_common.js",
+        "public/js/purchase_order.js"
+    ],
     "Quotation": [
         "public/js/tafqeet_common.js",
         "public/js/quotation.js"
