@@ -1,6 +1,6 @@
 # Arabic Tafqeet
 
-![Version](https://img.shields.io/badge/version-4.1.2026-blue)
+![Version](https://img.shields.io/badge/version-14.1.2026-blue)
 
 
 Arabic Tafqeet (تفقيط) app for Frappe/ERPNext that converts numeric amounts to Arabic words in Saudi Riyal format.
